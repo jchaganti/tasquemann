@@ -7,6 +7,13 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>tasquemann Maven Webapp</name>
 	<url>http://maven.apache.org</url>
+	<developers>
+		<developer>
+			<id>jchaganti</id>
+			<name>Janaki Ram Chaganti</name>
+			<email>jchaganti@gmail.com</email>
+		</developer>
+	</developers>
 	<repositories>
 		<repository>
 			<id>spring-libs-milestone</id>
@@ -22,6 +29,10 @@
 			<id>mvn-public</id>
 			<name>MVNRepository</name>
 			<url>http://mvnrepository.com</url>
+		</repository>
+		<repository>
+			<id>smartclient</id>
+			<url>http://smartclient.com/maven2</url>
 		</repository>
 	</repositories>
 
@@ -47,6 +58,9 @@
 		<spring.data.jpa.version>1.4.0.M1</spring.data.jpa.version>
 		<resteasy.version>2.2.1.GA</resteasy.version>
 		<jmockit.version>1.4</jmockit.version>
+		<mysql-connector.version>5.1.26</mysql-connector.version>
+		<gwt.version>2.5.1</gwt.version>
+		<smartgwt.version>4.0</smartgwt.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -152,6 +166,29 @@
 			<artifactId>aspectjweaver</artifactId>
 			<version>${aspectj.version}</version>
 			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql-connector.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-servlet</artifactId>
+			<version>${gwt.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-user</artifactId>
+			<version>${gwt.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.smartgwt</groupId>
+			<artifactId>smartgwt</artifactId>
+			<version>${smartgwt.version}</version>
 		</dependency>
 	</dependencies>
 	<build>
