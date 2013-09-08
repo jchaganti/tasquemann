@@ -19,7 +19,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "tm_item")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class TMItem implements Serializable {
+public abstract class TMItem implements Serializable {
 
     private static final long serialVersionUID = 2154160898626321059L;
     @Id
@@ -31,8 +31,6 @@ public class TMItem implements Serializable {
     @Column(name = "modified")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modified;
-    @Column(name = "type")
-    private String type;
     @OneToOne
     @JoinColumn(name = "user_id")
     private TMUser user;
@@ -45,7 +43,8 @@ public class TMItem implements Serializable {
     }
 
     public TMItem() {
-
+        this.created = new Date();
+        this.modified = created;
     }
 
     public Long getId() {
@@ -60,10 +59,6 @@ public class TMItem implements Serializable {
         return created;
     }
 
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
     public Date getModified() {
         return modified;
     }
@@ -76,16 +71,8 @@ public class TMItem implements Serializable {
         return user;
     }
 
-    public void setUser(TMUser user) {
+    protected void setUser(TMUser user) {
         this.user = user;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
 }

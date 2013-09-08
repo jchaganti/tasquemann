@@ -6,6 +6,7 @@
 	    <class>org.jchlabs.tasquemann.server.data.jpa.domain.TMItem</class>
 	    <class>org.jchlabs.tasquemann.server.data.jpa.domain.TMTask</class>
 	    <class>org.jchlabs.tasquemann.server.data.jpa.domain.TMProject</class>
+	    <class>org.jchlabs.tasquemann.server.data.jpa.domain.TMClosure</class>
 	    <class>org.jchlabs.tasquemann.server.data.jpa.domain.TMCalendar</class>
 	    <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />

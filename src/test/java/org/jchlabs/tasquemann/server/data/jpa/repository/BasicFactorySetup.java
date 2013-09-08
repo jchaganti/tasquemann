@@ -2,8 +2,6 @@ package org.jchlabs.tasquemann.server.data.jpa.repository;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.Date;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -43,7 +41,9 @@ public class BasicFactorySetup {
 		user = new TMUser("jchaganti", "jch");
 		user = userRepository.save(user);
 
-		project = new TMProject(new Date(), new Date(), user , "description", 10.0f, 12.0f, 11.0f, new Date(), new Date(), Boolean.TRUE, "title", TMProject.STATE.ACTIVE);
+		//project = new TMProject(new Date(), new Date(), user , "description", 10.0f, 12.0f, 11.0f, new Date(), new Date(), Boolean.TRUE, "title", TMProject.STATE.ACTIVE);
+		
+		project = TMProject.getBuilder(user,  "description", "title").build();
 
 		project = projectRepository.save(project);
 		em.getTransaction().commit();

@@ -15,7 +15,6 @@ import javax.persistence.Table;
 public class TMProject extends TMTask {
 
     private static final long serialVersionUID = 1L;
-    // private Long id;
     @Column(name = "title")
     private String title;
     @ManyToOne
@@ -33,43 +32,51 @@ public class TMProject extends TMTask {
         super();
     }
 
-    public TMProject(Date created, Date modified, TMUser user, String description, Float estimatedHrs, Float actualHrs,
-            Float todoHrs, Date startDate, Date endDate, Boolean dirty, String title, STATE state) {
-        super(created, modified, user, description, estimatedHrs, actualHrs, todoHrs, startDate, endDate, dirty);
-        this.title = title;
-        this.state = state;
+    public static Builder getBuilder(TMUser user, String description, String title) {
+        return new Builder(user, description, title);
     }
-
-    // public Long getId() {
-    // return id;
-    // }
-    //
-    // public void setId(Long id) {
-    // this.id = id;
-    // }
 
     public String getTitle() {
         return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public STATE getState() {
         return state;
     }
 
-    public void setState(STATE state) {
-        this.state = state;
-    }
-
     public TMCalendar getCalendar() {
         return calendar;
     }
 
-    public void setCalendar(TMCalendar calendar) {
-        this.calendar = calendar;
-    }
+    public static class Builder {
+        private TMProject built;
 
+        public Builder(TMUser user, String description, String title) {
+            built = new TMProject();
+            built.setUser(user);
+            built.setDescription(description);
+            built.title = title;
+            built.state = STATE.ACTIVE;
+            built.setLevel(-1);
+        }
+
+        public Builder startDate(Date startDate) {
+            built.setStartDate(startDate);
+            return this;
+        }
+
+        public Builder estimatedHrs(Float estimatedHrs) {
+            built.setEstimatedHrs(estimatedHrs);
+            return this;
+        }
+
+        public Builder todoHrs(Float todoHrs) {
+            built.setTodoHrs(todoHrs);
+            return this;
+        }
+
+        public TMProject build() {
+            return built;
+        }
+    }
 }

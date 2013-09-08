@@ -15,15 +15,15 @@ import javax.persistence.TemporalType;
 public class TMTask extends TMItem {
 
     private static final long serialVersionUID = 1L;
-    // private Long id;
+
     @Column(name = "description")
     private String description;
     @Column(name = "estimated_hrs")
-    private Float estimatedHrs;
+    private float estimatedHrs;
     @Column(name = "actual_hrs")
-    private Float actualHrs;
+    private float actualHrs;
     @Column(name = "todo_hrs")
-    private Float todoHrs;
+    private float todoHrs;
     @Column(name = "start_date")
     @Temporal(TemporalType.DATE)
     private Date startDate;
@@ -33,65 +33,48 @@ public class TMTask extends TMItem {
     @Column(name = "dirty")
     private Boolean dirty;
     @OneToOne
-    @JoinColumn(name = "parent_id")
-    private TMTask parent;
-    @OneToOne
     @JoinColumn(name = "previous_id")
     private TMTask previous;
+    @Column(name = "level")
+    private int level;
 
-    public TMTask(Date created, Date modified, TMUser user, String description, Float estimatedHrs, Float actualHrs,
-            Float todoHrs, Date startDate, Date endDate, Boolean dirty) {
-        super(created, modified, user);
-        this.description = description;
-        this.estimatedHrs = estimatedHrs;
-        this.actualHrs = actualHrs;
-        this.todoHrs = todoHrs;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.dirty = dirty;
+    public static Builder getBuilder(TMUser user, String description, String title, int level) {
+        return new Builder(user, description, title, level);
     }
 
     public TMTask() {
-
+        super();
     }
-
-    // public Long getId() {
-    // return id;
-    // }
-    //
-    // public void setId(Long id) {
-    // this.id = id;
-    // }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    protected void setDescription(String description) {
         this.description = description;
     }
 
-    public Float getEstimatedHrs() {
+    public float getEstimatedHrs() {
         return estimatedHrs;
     }
 
-    public void setEstimatedHrs(Float estimatedHrs) {
+    protected void setEstimatedHrs(float estimatedHrs) {
         this.estimatedHrs = estimatedHrs;
     }
 
-    public Float getActualHrs() {
+    public float getActualHrs() {
         return actualHrs;
     }
 
-    public void setActualHrs(Float actualHrs) {
+    public void setActualHrs(float actualHrs) {
         this.actualHrs = actualHrs;
     }
 
-    public Float getTodoHrs() {
+    public float getTodoHrs() {
         return todoHrs;
     }
 
-    public void setTodoHrs(Float todoHrs) {
+    public void setTodoHrs(float todoHrs) {
         this.todoHrs = todoHrs;
     }
 
@@ -119,20 +102,50 @@ public class TMTask extends TMItem {
         this.dirty = dirty;
     }
 
-    public TMTask getParent() {
-        return parent;
-    }
-
-    public void setParent(TMTask parent) {
-        this.parent = parent;
-    }
-
     public TMTask getPrevious() {
         return previous;
     }
 
-    public void setPrevious(TMTask previous) {
+    protected void setPrevious(TMTask previous) {
         this.previous = previous;
     }
 
+    public int getLevel() {
+        return level;
+    }
+
+    protected void setLevel(int level) {
+        this.level = level;
+    }
+
+    public static class Builder {
+        private TMTask built;
+
+        public Builder(TMUser user, String description, String title, int level) {
+            built = new TMProject();
+            built.setUser(user);
+            built.setDescription(description);
+            built.setLevel(level);
+        }
+
+        public Builder startDate(Date startDate) {
+            built.setStartDate(startDate);
+            return this;
+        }
+
+        public Builder estimatedHrs(float estimatedHrs) {
+            built.setEstimatedHrs(estimatedHrs);
+            return this;
+        }
+
+        public Builder todoHrs(float todoHrs) {
+            built.setTodoHrs(todoHrs);
+            return this;
+        }
+
+        public TMTask build() {
+            return built;
+        }
+
+    }
 }
