@@ -5,5 +5,4 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface TMUserRepository extends CrudRepository<TMUser, Long> {
     TMUser findByName(String name);
-
 }

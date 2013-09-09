@@ -40,11 +40,7 @@ public class BasicFactorySetup {
 		em.getTransaction().begin();
 		user = new TMUser("jchaganti", "jch");
 		user = userRepository.save(user);
-
-		//project = new TMProject(new Date(), new Date(), user , "description", 10.0f, 12.0f, 11.0f, new Date(), new Date(), Boolean.TRUE, "title", TMProject.STATE.ACTIVE);
-		
 		project = TMProject.getBuilder(user,  "description", "title").build();
-
 		project = projectRepository.save(project);
 		em.getTransaction().commit();
 
