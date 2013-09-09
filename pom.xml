@@ -63,6 +63,7 @@
 		<smartgwt.version>4.0</smartgwt.version>
 		<jackson.version>3.0.3.Final</jackson.version>
 		<querydsl.version>3.2.3</querydsl.version>
+		<generated.sources.directory>${project.basedir}/target/generated-sources</generated.sources.directory>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -235,6 +236,30 @@
 							<!-- States that the APT code generator should look for JPA annotations -->
 							<processor>com.mysema.query.apt.jpa.JPAAnnotationProcessor</processor>
 						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.jvnet.jaxb2.maven2</groupId>
+				<artifactId>maven-jaxb2-plugin</artifactId>
+				<version>0.8.2</version>
+				<configuration>
+					<schemaDirectory>src/main/resources/</schemaDirectory>
+					<generateDirectory>${generated.sources.directory}</generateDirectory>
+					<verbose>true</verbose>
+					<debug>true</debug>
+					<encoding>${project.build.sourceEncoding}</encoding>
+					<forceRegenerate>true</forceRegenerate>
+					<removeOldOutput>true</removeOldOutput>
+					<!-- bindingDirectory>src/main/resources/schema-bindings</bindingDirectory -->
+					<generatePackage>org.jchlabs.tasquemann.server.data.representation</generatePackage>
+				</configuration>
+				<executions>
+					<execution>
+						<id>generate</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
 					</execution>
 				</executions>
 			</plugin>
