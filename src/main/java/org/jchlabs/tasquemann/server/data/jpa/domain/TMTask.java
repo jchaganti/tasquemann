@@ -33,8 +33,11 @@ public class TMTask extends TMItem {
     @Column(name = "dirty")
     private Boolean dirty;
     @OneToOne
-    @JoinColumn(name = "previous_id")
-    private TMTask previous;
+    @JoinColumn(name = "first_child_id")
+    private TMTask firstChild;
+    @OneToOne
+    @JoinColumn(name = "sibling_id")
+    private TMTask sibling;
     @Column(name = "level")
     private int level;
 
@@ -102,13 +105,7 @@ public class TMTask extends TMItem {
         this.dirty = dirty;
     }
 
-    public TMTask getPrevious() {
-        return previous;
-    }
 
-    protected void setPrevious(TMTask previous) {
-        this.previous = previous;
-    }
 
     public int getLevel() {
         return level;
@@ -116,6 +113,22 @@ public class TMTask extends TMItem {
 
     protected void setLevel(int level) {
         this.level = level;
+    }
+
+    public TMTask getFirstChild() {
+        return firstChild;
+    }
+
+    public void setFirstChild(TMTask firstChild) {
+        this.firstChild = firstChild;
+    }
+
+    public TMTask getSibling() {
+        return sibling;
+    }
+
+    public void setSibling(TMTask sibling) {
+        this.sibling = sibling;
     }
 
     public static class Builder {

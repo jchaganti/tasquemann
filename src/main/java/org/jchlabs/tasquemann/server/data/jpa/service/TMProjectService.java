@@ -1,8 +1,7 @@
 package org.jchlabs.tasquemann.server.data.jpa.service;
 
-import java.util.List;
-
 import org.jchlabs.tasquemann.server.data.jpa.domain.TMTask;
+import org.jchlabs.tasquemann.server.data.representation.TMProjects;
 
 /**
  * @author jchaganti
@@ -12,11 +11,11 @@ public interface TMProjectService extends TMService{
 
     /**
      * This will return all the subtasks of a project 
-     * @param id - Project id.
+     * @param id - Task id.
      * @param recurse - Flag to indicate if we have to recurse the tree.
      * @return List of TMTask
      */
-    List<TMTask> getTasks(long id, boolean recurse);
+    TMProjects getTasks(long id, boolean recurse);
     
     
     /**

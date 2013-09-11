@@ -4,7 +4,7 @@
 	xmlns:tm="http://www.example.org/tm.xsd" targetNamespace="http://www.example.org/tm.xsd"
 	elementFormDefault="qualified">
 
-	<xsd:complexType name="TMProjectType">
+	<xsd:complexType name="TMProject">
 		<xsd:sequence>
 			<xsd:element name="title" type="xsd:string"></xsd:element>
 			<xsd:element name="description" type="xsd:string"></xsd:element>
@@ -12,7 +12,7 @@
 		<xsd:attribute name="id" type="xsd:int"></xsd:attribute>
 	</xsd:complexType>
 
-	<xsd:complexType name="TMTaskType">
+	<xsd:complexType name="TMTask">
 		<xsd:sequence>
 			<xsd:element name="description" type="xsd:string"></xsd:element>
 			<xsd:element name="estimatedHrs" type="xsd:float"></xsd:element>
@@ -22,24 +22,24 @@
 			<xsd:element name="endDate" type="xsd:dateTime"></xsd:element>
 			<xsd:element name="dirty" type="xsd:boolean"></xsd:element>
 			<xsd:element name="level" type="xsd:int"></xsd:element>
-			<xsd:element name="subTasks" type="tm:TMTasksType"></xsd:element>
+			<xsd:element name="subTasks" type="tm:TMTasks"></xsd:element>
 		</xsd:sequence>
 		<xsd:attribute name="id" type="xsd:int"></xsd:attribute>
 	</xsd:complexType>
 
-	<xsd:complexType name="TMTasksType">
+	<xsd:complexType name="TMTasks">
 		<xsd:sequence>
-			<xsd:element name="task" type="tm:TMTaskType" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="task" type="tm:TMTask" minOccurs="0" maxOccurs="unbounded" />
 		</xsd:sequence>
 	</xsd:complexType>
 
-	<xsd:complexType name="TMProjectsType">
+	<xsd:complexType name="TMProjects">
 		<xsd:sequence>
-			<xsd:element name="tmProject" type="tm:TMProjectType" minOccurs="0" maxOccurs="unbounded"></xsd:element>
+			<xsd:element name="tmProject" type="tm:TMProject" minOccurs="0" maxOccurs="unbounded"></xsd:element>
 		</xsd:sequence>
 	</xsd:complexType>
 
-	<xsd:complexType name="TMCalendarType">
+	<xsd:complexType name="TMCalendar">
 		<xsd:sequence>
 			<xsd:element name="name" type="xsd:string"></xsd:element>
 			<xsd:element name="usedStatus" type="xsd:boolean"></xsd:element>
@@ -53,15 +53,15 @@
 		<xsd:attribute name="id" type="xsd:int"></xsd:attribute>
 	</xsd:complexType>
 	
-	<xsd:complexType name="TMCalendarsType">
+	<xsd:complexType name="TMCalendars">
         <xsd:sequence>
-            <xsd:element name="tmCalendarType" type="tm:TMCalendarType" minOccurs="0" maxOccurs="unbounded"></xsd:element>
+            <xsd:element name="tmCalendar" type="tm:TMCalendar" minOccurs="0" maxOccurs="unbounded"></xsd:element>
         </xsd:sequence>
     </xsd:complexType>
 
-	<xsd:element name="tmCalendars" type="tm:TMCalendarsType"></xsd:element>
+	<xsd:element name="tmCalendars" type="tm:TMCalendars"></xsd:element>
 
-	<xsd:element name="tmProjects" type="tm:TMProjectsType"></xsd:element>
+	<xsd:element name="tmProjects" type="tm:TMProjects"></xsd:element>
 
-	<xsd:element name="tmTasks" type="tm:TMTasksType"></xsd:element>
+	<xsd:element name="tmTasks" type="tm:TMTasks"></xsd:element>
 </xsd:schema>

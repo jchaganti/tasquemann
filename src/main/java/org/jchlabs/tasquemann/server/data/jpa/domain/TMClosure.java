@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,49 +20,45 @@ public class TMClosure implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(name = "ancestor")
-    private Integer ancestor;
+    private long ancestor;
     @Column(name = "descendant")
-    private Integer descendant;
-    @Column(name = "path_length")
-    private Integer pathLength;
+    private long descendant;
+    @OneToOne
+    @JoinColumn(name = "project_id")
+    private TMProject project;
 
     public TMClosure() {
         super();
     }
 
-    public TMClosure(Integer ancestor, Integer descendant, Integer pathLength) {
+    public TMClosure(Integer ancestor, Integer descendant, TMProject project) {
         super();
         this.ancestor = ancestor;
         this.descendant = descendant;
-        this.pathLength = pathLength;
+        this.project = project;
     }
 
     public Long getId() {
         return id;
     }
 
-    public Integer getAncestor() {
+    public long getAncestor() {
         return ancestor;
     }
 
-    public void setAncestor(Integer ancestor) {
+    public void setAncestor(long ancestor) {
         this.ancestor = ancestor;
     }
 
-    public Integer getDescendant() {
+    public long getDescendant() {
         return descendant;
     }
 
-    public void setDescendant(Integer descendant) {
+    public void setDescendant(long descendant) {
         this.descendant = descendant;
     }
 
-    public Integer getPathLength() {
-        return pathLength;
+    public TMProject getProject() {
+        return project;
     }
-
-    public void setPathLength(Integer pathLength) {
-        this.pathLength = pathLength;
-    }
-
 }

@@ -232,7 +232,7 @@
 						</goals>
 						<configuration>
 							<!-- Specifies the directory in which the query types are generated -->
-							<outputDirectory>target/generated-sources</outputDirectory>
+							<outputDirectory>${generated.sources.directory}</outputDirectory>
 							<!-- States that the APT code generator should look for JPA annotations -->
 							<processor>com.mysema.query.apt.jpa.JPAAnnotationProcessor</processor>
 						</configuration>
@@ -247,10 +247,10 @@
 					<schemaDirectory>src/main/resources/</schemaDirectory>
 					<generateDirectory>${generated.sources.directory}</generateDirectory>
 					<verbose>true</verbose>
-					<debug>true</debug>
+					<debug>false</debug>
 					<encoding>${project.build.sourceEncoding}</encoding>
-					<forceRegenerate>true</forceRegenerate>
-					<removeOldOutput>true</removeOldOutput>
+					<forceRegenerate>false</forceRegenerate>
+					<removeOldOutput>false</removeOldOutput>
 					<!-- bindingDirectory>src/main/resources/schema-bindings</bindingDirectory -->
 					<generatePackage>org.jchlabs.tasquemann.server.data.representation</generatePackage>
 				</configuration>
