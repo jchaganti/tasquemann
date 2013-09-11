@@ -1,36 +1,49 @@
 package org.jchlabs.tasquemann.server.data.jpa.service;
 
-import org.jchlabs.tasquemann.server.data.jpa.domain.TMTask;
-import org.jchlabs.tasquemann.server.data.representation.TMProjects;
+import org.jchlabs.tasquemann.server.data.jpa.domain.TMUser;
+import org.jchlabs.tasquemann.server.data.representation.TMProjectDTO;
+import org.jchlabs.tasquemann.server.data.representation.TMProjectsDTO;
 
 /**
  * @author jchaganti
- *
+ * 
  */
-public interface TMProjectService extends TMService{
+public interface TMProjectService extends TMService {
 
     /**
-     * This will return all the subtasks of a project 
-     * @param id - Task id.
-     * @param recurse - Flag to indicate if we have to recurse the tree.
-     * @return List of TMTask
+     * Creates a project for a given user.
+     * @param user
+     * @param project
+     * @return 
      */
-    TMProjects getTasks(long id, boolean recurse);
-    
-    
+    TMProjectDTO createProject(TMUser user, TMProjectDTO project);
+
     /**
-     * @param projectId
-     * @param parentId
-     * @param siblingId
-     * @param task
+     * Updates a project.
+     * @param project
      * @return
      */
-    boolean createTask(long projectId, long parentId, long siblingId, TMTask task);
-    
+    TMProjectDTO updateProject(TMProjectDTO project);
+
     /**
-     * @param taskId
+     * Delete a project.
+     * @param project
      * @return
      */
-    boolean deleteTask(long taskId);
+    TMProjectDTO deleteProject(TMProjectDTO project);
+
+    /**
+     * Retrieve all projects of a given user.
+     * @param user
+     * @return
+     */
+    TMProjectsDTO findAllProjects(TMUser user);
+
+    /**
+     * Retrieve project of a given id.
+     * @param id
+     * @return
+     */
+    TMProjectDTO findProject(long id);
 
 }
